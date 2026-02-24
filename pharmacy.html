@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharmacy | Care Weave</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* HERO */
+.hero{
+    background:
+        linear-gradient(rgba(11,46,79,0.45),rgba(11,46,79,0.45)),
+        url('hospital.jpg') center/cover;
+    height:260px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    display:inline-block;
+    margin:25px;
+    background:#0b2e4f;
+    color:white;
+    padding:12px 22px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:500;
+}
+.back-btn:hover{ background:#09304f; }
+
+/* CONTAINER */
+.container{
+    width:90%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:35px;
+    border-radius:16px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* FORM */
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+input, textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+
+textarea{
+    grid-column:span 2;
+    height:100px;
+    resize:none;
+}
+
+.section-title{
+    grid-column:span 2;
+    font-weight:600;
+    color:#0b2e4f;
+}
+
+.section-desc{
+    grid-column:span 2;
+    font-size:13px;
+    color:#555;
+}
+
+.file-upload{
+    grid-column:span 2;
+}
+
+button{
+    grid-column:span 2;
+    padding:15px;
+    background:#0b2e4f;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover{ background:#09304f; }
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+    <div>
+        <h1>Care Weave – Pharmacy</h1>
+        <p>Prescription-based medicine ordering</p>
+    </div>
+</div>
+
+
+<div class="container">
+<div class="card">
+
+<h2 style="text-align:center;color:#0b2e4f;margin-bottom:25px;">
+Order Medicines
+</h2>
+
+<form action="save_order.php" method="post" enctype="multipart/form-data" class="form-grid">
+
+    <input type="text" name="customer" placeholder="Patient Name" required>
+    <input type="text" name="phone" placeholder="Phone Number" required>
+
+    <textarea name="address" placeholder="Delivery Address" required></textarea>
+
+    <input type="text" name="doctor_name" placeholder="Prescribing Doctor Name" required>
+
+    <textarea name="items" placeholder="Prescribed medicines (name – dosage – quantity)" required></textarea>
+
+    <!-- PRESCRIPTION -->
+    <div class="section-title">Prescription Upload</div>
+    <div class="section-desc">
+        Upload a valid prescription issued by a registered doctor (mandatory).
+    </div>
+
+    <div class="file-upload">
+        <input type="file" name="prescription_file" accept=".pdf,.jpg,.png" required>
+    </div>
+
+    <button type="submit">Place Order</button>
+</form>
+
+</div>
+</div>
+<div style="text-align:center; margin-top:30px;">
+    <a href="index.html" class="back-btn">← Back to Home</a>
+</div>
+</body>
+</html>

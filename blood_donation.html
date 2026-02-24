@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Donation | Care Weave</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* CONTAINER */
+.container{
+    max-width:800px;
+    margin:40px auto;
+    background:#ffffff;
+    padding:35px;
+    border-radius:16px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* HEADINGS */
+h1{
+    text-align:center;
+    color:#0b2e4f;
+    margin-bottom:6px;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:14px;
+    color:#666;
+    margin-bottom:30px;
+}
+
+/* FORM */
+label{
+    display:block;
+    margin-top:18px;
+    font-weight:500;
+}
+
+input, select, textarea{
+    width:100%;
+    padding:12px;
+    margin-top:6px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:14px;
+}
+
+textarea{
+    resize:none;
+    height:90px;
+}
+
+/* SECTION TITLES */
+.section-title{
+    margin-top:34px;
+    font-size:16px;
+    font-weight:600;
+    color:#0b2e4f;
+}
+
+.info-text{
+    font-size:13px;
+    color:#555;
+    margin-top:6px;
+}
+
+/* ELIGIBILITY BOX */
+.eligibility{
+    background:#f9fbff;
+    border:1px solid #dbe8ff;
+    border-radius:12px;
+    padding:20px;
+    margin-top:14px;
+}
+
+/* PERFECT CHECKBOX ALIGNMENT */
+.eligibility label{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    font-size:14px;
+    line-height:1.6;
+    margin-top:14px;
+    font-weight:400;
+}
+
+.eligibility input[type="checkbox"]{
+    width:16px;
+    height:16px;
+    margin-top:4px;
+    flex-shrink:0;
+}
+
+/* PRIMARY BUTTON */
+button{
+    margin-top:34px;
+    width:100%;
+    padding:15px;
+    background:#0b2e4f;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#09304f;
+}
+
+/* BACK TO HOME BUTTON (SAME STYLE AS OTHER PAGES) */
+.back-btn{
+    display:inline-block;
+    background:#0b2e4f;
+    color:#ffffff;
+    padding:12px 28px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:500;
+    font-size:15px;
+    transition:background 0.3s ease;
+}
+
+.back-btn:hover{
+    background:#09304f;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Blood Donation Registration</h1>
+    <p class="subtitle">
+        Register as a voluntary blood donor and support life-saving medical care.
+    </p>
+    <!-- SUCCESS MESSAGE -->
+<div id="successMsg" style="display:none; background:#dcfce7; color:#166534; padding:12px; border-radius:8px; margin-bottom:15px;">
+✅ Blood donor registered successfully. Awaiting admin verification.
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+if (params.get("success")) {
+    document.getElementById("successMsg").style.display = "block";
+}
+</script>
+
+    <form action="save_donor.php" method="post" enctype="multipart/form-data">
+
+        <label>Full Name</label>
+        <input type="text" name="full_name" placeholder="Enter your full name" required>
+
+        <label>Age</label>
+        <input type="number" name="age" min="18" max="65" placeholder="Eligible age: 18–65 years" required>
+
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="">Select gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <label>Blood Group</label>
+        <select name="blood_group" required>
+            <option value="">Select blood group</option>
+            <option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option>
+            <option>AB+</option><option>AB-</option>
+            <option>O+</option><option>O-</option>
+        </select>
+
+        <label>Mobile Number</label>
+        <input type="text" name="mobile" placeholder="Enter contact number" required>
+
+        <label>Email Address (optional)</label>
+        <input type="email" name="email" placeholder="example@email.com">
+
+        <label>Residential Address</label>
+        <textarea name="address" placeholder="Enter your residential address"></textarea>
+
+        <!-- ELIGIBILITY -->
+        <div class="section-title">Donor Eligibility & Medical Declaration</div>
+        <p class="info-text">
+            Please review and confirm the following conditions. Blood donation is permitted
+            only if all criteria are satisfied.
+        </p>
+
+        <div class="eligibility">
+
+            <label>
+                <input type="checkbox" required>
+                <span>I confirm that I am between <b>18 and 65 years of age</b>.</span>
+            </label>
+
+            <label>
+                <input type="checkbox" required>
+                <span>I confirm that I am <b>not currently pregnant or breastfeeding</b>.</span>
+            </label>
+
+            <label>
+                <input type="checkbox" required>
+                <span>I confirm that I have <b>not consumed alcohol</b> within the last 24 hours.</span>
+            </label>
+
+            <label>
+                <input type="checkbox" required>
+                <span>
+                    I confirm that I do <b>not have any active infections, chronic medical
+                    conditions, or recent major surgeries</b> within the past six months.
+                </span>
+            </label>
+
+            <label>
+                <input type="checkbox" required>
+                <span>
+                    I declare that all information provided is <b>true, complete, and accurate</b>
+                    to the best of my knowledge.
+                </span>
+            </label>
+
+        </div>
+
+        <!-- ID PROOF -->
+        <div class="section-title">Identity / Age Proof (Optional)</div>
+        <p class="info-text">
+            You may upload a government-issued identity document (Aadhaar Card, Driving License, etc.)
+            for verification purposes.
+        </p>
+
+        <input type="file" name="document" accept=".pdf,.jpg,.jpeg,.png">
+
+        <button type="submit">Register as Blood Donor</button>
+
+    </form>
+</div>
+
+<!-- BACK TO HOME (BOTTOM, SAME COLOR AS PROJECT) -->
+<div style="text-align:center; margin:40px 0;">
+    <a href="index.html" class="back-btn">← Back to Home</a>
+</div>
+
+</body>
+</html>

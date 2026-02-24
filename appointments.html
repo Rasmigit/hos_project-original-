@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Appointment | Care Weave</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* 🔔 BELL */
+.bell{
+    position:fixed;
+    top:20px;
+    right:20px;
+    font-size:26px;
+    animation:ring 2s infinite;
+    cursor:pointer;
+}
+@keyframes ring{
+    0%{transform:rotate(0)}
+    15%{transform:rotate(15deg)}
+    30%{transform:rotate(-15deg)}
+    45%{transform:rotate(10deg)}
+    60%{transform:rotate(-10deg)}
+    100%{transform:rotate(0)}
+}
+
+/* HERO */
+.hero{
+    background:
+        linear-gradient(rgba(11,46,79,.55),rgba(11,46,79,.75)),
+        url('hospital.jpg') center/cover;
+    height:260px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+.hero h1{ font-size:36px; }
+.hero p{ margin-top:8px; font-size:17px; }
+
+/* CONTAINER */
+.container{
+    width:90%;
+    max-width:900px;
+    margin:40px auto;
+}
+
+/* CARD */
+.card{
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,.12);
+    animation:fadeUp .7s ease;
+}
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px)}
+    to{opacity:1; transform:translateY(0)}
+}
+
+.card h2{
+    text-align:center;
+    margin-bottom:30px;
+    color:#0b2e4f;
+}
+
+/* FORM */
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+.form-grid input,
+.form-grid select,
+.form-grid textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+}
+textarea{
+    grid-column:span 2;
+    height:100px;
+    resize:none;
+}
+
+/* SECTIONS */
+.section-title{
+    grid-column:span 2;
+    font-weight:600;
+    color:#0b2e4f;
+}
+.section-desc{
+    grid-column:span 2;
+    font-size:13px;
+    color:#555;
+    margin-top:-6px;
+}
+
+/* FILE */
+.file-upload{
+    grid-column:span 2;
+    display:none;
+}
+
+/* BUTTON */
+button{
+    grid-column:span 2;
+    padding:16px;
+    background:#0b2e4f;
+    border:none;
+    border-radius:14px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover{ background:#09304f; }
+
+/* 🔔 TOAST */
+.toast{
+    position:fixed;
+    top:90px;
+    right:30px;
+    padding:18px 24px;
+    border-radius:16px;
+    color:#fff;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+    opacity:0;
+    transform:translateY(-20px);
+    transition:.4s;
+    z-index:9999;
+}
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+.toast.success{ background:linear-gradient(135deg,#22c55e,#16a34a); }
+.toast.error{ background:linear-gradient(135deg,#ef4444,#b91c1c); }
+
+/* ⏳ LOADER */
+.loader{
+    position:fixed;
+    inset:0;
+    background:rgba(255,255,255,.95);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:99999;
+}
+.spinner{
+    width:50px;
+    height:50px;
+    border:5px solid #e5e7eb;
+    border-top:5px solid #0b2e4f;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+@keyframes spin{ to{transform:rotate(360deg)} }
+
+/* BACK */
+.back-btn{
+    display:inline-block;
+    margin:40px auto;
+    background:#0b2e4f;
+    color:white;
+    padding:12px 22px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:500;
+}
+.back-btn:hover{ background:#09304f; }
+
+/* MOBILE */
+@media(max-width:768px){
+    .form-grid{ grid-template-columns:1fr; }
+    textarea,button{ grid-column:1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bell">🔔</div>
+
+<div class="hero">
+    <div>
+        <h1>Care Weave – A Context-Aware Healthcare Platform</h1>
+        <p>Compassionate care. Advanced medicine.</p>
+    </div>
+</div>
+
+<div class="container">
+<div class="card">
+<h2>Book an Appointment</h2>
+
+<form action="save_appointment.php"
+      method="post"
+      enctype="multipart/form-data"
+      class="form-grid"
+      onsubmit="showLoader()">
+
+<input type="text" name="name" placeholder="Patient Name" required>
+<input type="text" name="phone" placeholder="Phone Number" required>
+<input type="email" name="email" placeholder="Email (optional)">
+
+<select name="doctor" required>
+<option value="">Choose Doctor</option>
+<option>Dr. Ananya Iyer – Cardiology</option>
+<option>Dr. Megha Deshmukh – Gynecology</option>
+<option>Dr. Priya Govil – Pediatrics</option>
+<option>Dr. William A. Abdu – Orthopedics</option>
+<option>Dr. Vikram Reddy – Neurology</option>
+<option>Dr. Pradeep Sharma – General Medicine</option>
+</select>
+
+<input type="date" name="date" required>
+<textarea name="notes" placeholder="Symptoms or clinical notes (optional)"></textarea>
+
+<div class="section-title">Patient Medical History</div>
+<div class="section-desc">Select the option that best describes your medical history.</div>
+
+<select name="history_type" id="history_type" onchange="toggleHistory()" required>
+<option value="new">First-time visit</option>
+<option value="existing">Previous medical records available</option>
+</select>
+
+<div id="fileUpload" class="file-upload">
+<input type="file" name="history_file" accept=".pdf,.jpg,.png">
+</div>
+
+<button type="submit">Confirm Appointment</button>
+</form>
+
+</div>
+</div>
+
+<div style="text-align:center">
+<a href="index.html" class="back-btn">← Back to Home</a>
+</div>
+
+<!-- TOASTS -->
+<div id="successToast" class="toast success">
+📧 Appointment Confirmed!<br><small>We will contact you shortly.</small>
+</div>
+<div id="errorToast" class="toast error">
+❌ Submission failed. Please try again.
+</div>
+
+<!-- LOADER -->
+<div id="loader" class="loader">
+<div class="spinner"></div>
+<p>Submitting appointment...</p>
+</div>
+
+<script>
+function toggleHistory(){
+    document.getElementById("fileUpload").style.display =
+        document.getElementById("history_type").value==="existing"?"block":"none";
+}
+
+function showLoader(){
+    document.getElementById("loader").style.display="flex";
+}
+
+const params=new URLSearchParams(window.location.search);
+if(params.get("success")==="1"){
+    document.getElementById("successToast").classList.add("show");
+}
+if(params.get("error")==="1"){
+    document.getElementById("errorToast").classList.add("show");
+}
+</script>
+
+</body>
+</html>

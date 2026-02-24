@@ -1,0 +1,12 @@
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.menu a.active {
+    background: #0b5ed7;
+    border-radius: 5px;
+}

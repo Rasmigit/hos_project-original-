@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services | Care Weave</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* HERO */
+.hero{
+    background:
+        linear-gradient(rgba(11,46,79,0.45), rgba(11,46,79,0.45)),
+        url('hospital.jpg') center/cover;
+    height:260px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.hero h1{
+    font-size:36px;
+}
+
+.hero p{
+    margin-top:8px;
+    font-size:17px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    display:block;
+    width:fit-content;
+    margin:25px auto;
+    background:#0b2e4f;
+    color:white;
+    padding:12px 28px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.back-btn:hover{
+    background:#09304f;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:25px;
+}
+
+/* TITLE */
+.section-title{
+    font-size:30px;
+    color:#0b2e4f;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+/* SERVICES GRID */
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:25px;
+}
+
+/* SERVICE CARD */
+.service-card{
+    background:white;
+    padding:30px 20px;
+    border-radius:16px;
+    text-align:center;
+    font-size:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.service-card:hover{
+    transform:translateY(-6px);
+    background:#f0f8ff;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .hero h1{
+        font-size:28px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div>
+        <h1>Care Weave A Context-Aware Healthcare Platform</h1>
+        <p>Compassionate care. Advanced medicine.</p>
+    </div>
+</div>
+<!-- CONTENT -->
+<div class="container">
+
+    <div class="section-title">Our Medical Services</div>
+
+    <div class="services-grid">
+        <div class="service-card">Outpatient Consultation</div>
+        <div class="service-card">Emergency & Trauma Care</div>
+        <div class="service-card">Laboratory & Imaging Diagnostics</div>
+        <div class="service-card">Surgical Procedures</div>
+        <div class="service-card">24/7 Pharmacy Services</div>
+        <div class="service-card">Blood Donation & Transfusion</div>
+        <div class="service-card">Digital Appointment Booking</div>
+        <div class="service-card">IoT-Based Bed Monitoring</div>
+    </div>
+
+</div>
+<div style="text-align:center; margin-top:30px;">
+    <a href="index.html" class="back-btn">← Back to Home</a>
+</div>
+</body>
+</html>
